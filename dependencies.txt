@@ -1,0 +1,15 @@
+certifi
+cycler
+fast-histogram
+kiwisolver
+matplotlib
+numpy
+Pillow
+pyparsing
+PyQt5
+PyQt5-sip
+pyqtgraph
+python-dateutil
+pyzmq
+six
+zmq

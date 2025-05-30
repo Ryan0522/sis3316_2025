@@ -1,0 +1,417 @@
+{
+  "channels": {
+    "0": {
+      "flags": [
+        "intern_trig"
+      ],
+      "gain": 1,
+      "event_pickup_index": 0,
+      "event_maw_ena": true,
+      "event_maw_select": 1,
+      "event_format_mask": 9,
+      "fir_energy_peaking_time": 100,
+      "fir_energy_gap_time": 300,
+      "fir_energy_tau_factor": 21,
+      "fir_energy_tau_table": 1,
+      "termination": true
+    },
+    "1": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "2": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "3": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "4": {
+      "flags": [
+        "intern_trig"
+      ],
+      "gain": 1,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "5": {
+      "flags": [
+        "intern_trig"
+      ],
+      "gain": 1,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "6": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "7": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "8": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "9": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "10": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "11": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "12": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "13": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "14": {
+      "flags": [
+        "intern_trig",
+        "invert"
+      ],
+      "gain": 0,
+      "event_maw_ena": false,
+      "event_format_mask": 1,
+      "termination": true
+    },
+    "15": {
+      "flags": [
+        "intern_trig"
+      ],
+      "gain": 2,
+      "event_maw_ena": false,
+      "event_maw_select": 1,
+      "event_format_mask": 9,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 50,
+      "fir_energy_tau_factor": 1,
+      "fir_energy_tau_table": 1,
+      "termination": true
+    }
+  },
+  "freq": 250,
+  "flags": [
+    "extern_ts_clr_ena",
+    "jumbo_ena"
+  ],
+  "groups": {
+    "0": {
+      "addr_threshold": 20116,
+      "delay": 46,
+      "enable": true,
+      "gate_window": 1500,
+      "maw_delay": 50,
+      "pileup_window": 500,
+      "raw_window": 0,
+      "maw_window": 1500,
+      "repileup_window": 500,
+      "accum1_start": 0,
+      "accum1_window": 1,
+      "accum2_start": 0,
+      "accum2_window": 1,
+      "accum3_start": 0,
+      "accum3_window": 1,
+      "accum4_start": 0,
+      "accum4_window": 1,
+      "accum5_start": 0,
+      "accum5_window": 1,
+      "accum6_start": 0,
+      "accum6_window": 1,
+      "accum7_start": 0,
+      "accum7_window": 1,
+      "accum8_start": 0,
+      "accum8_window": 1
+    },
+    "1": {
+      "addr_threshold": 20116,
+      "delay": 46,
+      "enable": true,
+      "gate_window": 1000,
+      "maw_delay": 50,
+      "pileup_window": 0,
+      "raw_window": 0,
+      "maw_window": 1000,
+      "repileup_window": 0,
+      "accum1_start": 0,
+      "accum1_window": 1,
+      "accum2_start": 0,
+      "accum2_window": 1,
+      "accum3_start": 0,
+      "accum3_window": 1,
+      "accum4_start": 0,
+      "accum4_window": 1,
+      "accum5_start": 0,
+      "accum5_window": 1,
+      "accum6_start": 0,
+      "accum6_window": 1,
+      "accum7_start": 0,
+      "accum7_window": 1,
+      "accum8_start": 0,
+      "accum8_window": 1
+    },
+    "2": {
+      "addr_threshold": 20116,
+      "delay": 46,
+      "enable": true,
+      "gate_window": 1000,
+      "maw_delay": 50,
+      "pileup_window": 100,
+      "raw_window": 0,
+      "repileup_window": 0,
+      "accum1_start": 0,
+      "accum1_window": 1,
+      "accum2_start": 0,
+      "accum2_window": 1,
+      "accum3_start": 0,
+      "accum3_window": 1,
+      "accum4_start": 0,
+      "accum4_window": 1,
+      "accum5_start": 0,
+      "accum5_window": 1,
+      "accum6_start": 0,
+      "accum6_window": 1,
+      "accum7_start": 0,
+      "accum7_window": 1,
+      "accum8_start": 0,
+      "accum8_window": 1
+    },
+    "3": {
+      "addr_threshold": 20116,
+      "delay": 46,
+      "enable": true,
+      "gate_window": 1200,
+      "maw_delay": 50,
+      "pileup_window": 500,
+      "raw_window": 0,
+      "maw_window": 1000,
+      "repileup_window": 500,
+      "accum1_start": 0,
+      "accum1_window": 1,
+      "accum2_start": 0,
+      "accum2_window": 1,
+      "accum3_start": 0,
+      "accum3_window": 1,
+      "accum4_start": 0,
+      "accum4_window": 1,
+      "accum5_start": 0,
+      "accum5_window": 1,
+      "accum6_start": 0,
+      "accum6_window": 1,
+      "accum7_start": 0,
+      "accum7_window": 1,
+      "accum8_start": 0,
+      "accum8_window": 1
+    }
+  },
+  "sum_triggers": {
+    "0": {
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6
+    },
+    "1": {
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6
+    },
+    "2": {
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6
+    },
+    "3": {
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6
+    }
+  },
+  "triggers": {
+    "0": {
+      "cfd_ena": 1,
+      "enable": 1,
+      "maw_gap_time": 100,
+      "maw_peaking_time": 50,
+      "threshold": 134222728
+    },
+    "1": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218128
+    },
+    "2": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134219728
+    },
+    "3": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218228
+    },
+    "4": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218378
+    },
+    "5": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218528
+    },
+    "6": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "7": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "8": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "9": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "10": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "11": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "12": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "13": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "14": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 6,
+      "maw_peaking_time": 6,
+      "threshold": 134218728
+    },
+    "15": {
+      "cfd_ena": 1,
+      "enable": 0,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 50,
+      "threshold": 134218228
+    }
+  }
+}

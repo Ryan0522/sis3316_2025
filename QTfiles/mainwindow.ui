@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>842</width>
+    <height>669</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>sis3316</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="sis3316Tab">
+       <attribute name="title">
+        <string>sis3316</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QFrame" name="frame_4">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>IP Address      </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_ip"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="ipConnectButton">
+               <property name="text">
+                <string>Check Connection</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_3">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Config File      </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_config">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="configFileButton">
+               <property name="text">
+                <string>Load</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Output folder</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_folder"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="outputFolderButton">
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Channel readout</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_channels">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QCheckBox" name="checkBox_0">
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="checkBox_4">
+               <property name="text">
+                <string>4</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QCheckBox" name="checkBox_8">
+               <property name="text">
+                <string>8</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QCheckBox" name="checkBox_12">
+               <property name="text">
+                <string>12</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="checkBox_1">
+               <property name="text">
+                <string>1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="checkBox_5">
+               <property name="text">
+                <string>5</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QCheckBox" name="checkBox_9">
+               <property name="text">
+                <string>9</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QCheckBox" name="checkBox_13">
+               <property name="text">
+                <string>13</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkBox_2">
+               <property name="text">
+                <string>2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="checkBox_6">
+               <property name="text">
+                <string>6</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QCheckBox" name="checkBox_10">
+               <property name="text">
+                <string>10</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QCheckBox" name="checkBox_14">
+               <property name="text">
+                <string>14</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="checkBox_3">
+               <property name="text">
+                <string>3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckBox" name="checkBox_7">
+               <property name="text">
+                <string>7</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QCheckBox" name="checkBox_11">
+               <property name="text">
+                <string>11</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3">
+              <widget class="QCheckBox" name="checkBox_15">
+               <property name="text">
+                <string>15</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="startButton">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="baseSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(114, 159, 207);</string>
+            </property>
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stopButton">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="baseSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(233, 185, 110);</string>
+            </property>
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0">
+         <widget class="QTextBrowser" name="textBrowser"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="channelTab">
+       <attribute name="title">
+        <string>Channel options</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QComboBox" name="comboBox_channel">
+          <item>
+           <property name="text">
+            <string>Ch0</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch6</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch7</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch8</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch9</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch10</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch11</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch12</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch13</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch14</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ch15</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Threshold</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <widget class="QFrame" name="frame">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_raw">
+                <property name="text">
+                 <string>Read raw waveform (ch 0 - 3)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QCheckBox" name="checkBox_adcRaw">
+                <property name="text">
+                 <string>Enabled</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QLabel" name="label_8">
+                <property name="styleSheet">
+                 <string notr="true">font: italic 8pt &quot;Ubuntu&quot;;</string>
+                </property>
+                <property name="text">
+                 <string>Caution: will result in large files and may result in dropped packets if 
+signal rate is high. Use only for initial callibration purposes!</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QFrame" name="frame">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Read ADC peak max</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_peakMax">
+                <property name="text">
+                 <string>Enabled</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QFrame" name="frame">
+             <property name="styleSheet">
+              <string notr="true">border-color: rgb(136, 138, 133);</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QRadioButton" name="radio_gain5V">
+                <property name="text">
+                 <string>5V</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radio_gain2V">
+                <property name="text">
+                 <string>2V</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radio_gain19V">
+                <property name="styleSheet">
+                 <string notr="true">border-color: rgb(136, 138, 133);</string>
+                </property>
+                <property name="text">
+                 <string>1.9 V</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Gain range</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_channel">
+             <property name="styleSheet">
+              <string notr="true">font: 13pt &quot;Ubuntu&quot;;</string>
+             </property>
+             <property name="text">
+              <string>-- Channel 0 --</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" colspan="2">
+            <widget class="QFrame" name="frame">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>Invert ADC input</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_invert">
+                <property name="text">
+                 <string>Enabled</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QFrame" name="frame">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QLineEdit" name="lineEdit_threshold"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>+ 0x800 0000</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="horizontalFrame">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="channelConfigButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Apply settings</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="styleSheet">
+              <string notr="true">font: 8pt &quot;Ubuntu&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Note: feel free to adjust the settings
+of multiple channels before hitting this button</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="helpTab">
+       <attribute name="title">
+        <string>Help</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTextBrowser" name="textBrowser_help"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>configFileButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotBrowseConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>812</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>41</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>outputFolderButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotBrowseOutput()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>812</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_ip</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotIpAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>391</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_config</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>726</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_folder</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotOutput()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>611</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>startButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotStart()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>80</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stopButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotStop()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>572</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>433</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ipConnectButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotIpConnect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>812</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>841</x>
+     <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_channel</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotChannelChange()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotTabChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>167</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>839</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>channelConfigButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotChannelConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>596</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>610</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotBrowseConfig()</slot>
+  <slot>slotBrowseOutput()</slot>
+  <slot>slotIpAddress()</slot>
+  <slot>slotConfig()</slot>
+  <slot>slotOutput()</slot>
+  <slot>slotStart()</slot>
+  <slot>slotStop()</slot>
+  <slot>slotIpConnect()</slot>
+  <slot>slotChannelConfig()</slot>
+  <slot>slotChannelChange()</slot>
+  <slot>slotTabChanged()</slot>
+ </slots>
+</ui>

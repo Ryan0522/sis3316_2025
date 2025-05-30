@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Live Plotter</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(136, 138, 133);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QComboBox" name="comboBox">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(238, 238, 236);
+selection-color: rgb(85, 87, 83);</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="GraphicsLayoutWidget" name="customGraphWidget" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(238, 238, 236);
+selection-color: rgb(136, 138, 133);</string>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionAdd_channel"/>
+    <addaction name="actionRemove_channel"/>
+   </widget>
+   <widget class="QMenu" name="menu_Scale">
+    <property name="title">
+     <string>Axes</string>
+    </property>
+    <addaction name="actionSettings"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menu_Scale"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionx_limits">
+   <property name="text">
+    <string>x limits</string>
+   </property>
+  </action>
+  <action name="actiony_scale">
+   <property name="text">
+    <string>y scale</string>
+   </property>
+  </action>
+  <action name="actiony_limits">
+   <property name="text">
+    <string>y limits</string>
+   </property>
+  </action>
+  <action name="actionAdd_channel">
+   <property name="text">
+    <string>Add channel</string>
+   </property>
+  </action>
+  <action name="actionRemove_channel">
+   <property name="text">
+    <string>Remove channel</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GraphicsLayoutWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionAdd_channel</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAddChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotComboBox()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>106</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>164</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRemove_channel</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotDeleteChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSettings</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAxes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotAddChannel()</slot>
+  <slot>slotXScale()</slot>
+  <slot>slotYScale()</slot>
+  <slot>slotXLim()</slot>
+  <slot>slotYLim()</slot>
+  <slot>slotComboBox()</slot>
+  <slot>slotDeleteChannel()</slot>
+  <slot>slotAxes()</slot>
+ </slots>
+</ui>
