@@ -1,5 +1,7 @@
 ## sis3316 GUI ###
 
+Adapted from [Doug](https://github.com/dougUCN/sis3316_gui)
+
 Start the GUI, sis3316 readout server, and the live plotter using 
 
 ```
