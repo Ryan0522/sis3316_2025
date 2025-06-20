@@ -7,8 +7,39 @@ Start the GUI, sis3316 readout server, and the live plotter using
 ```
 ./START_GUI.sh
 ```
+### Setting up SIS3316 ###
 
-[Instructions for setting up the SIS3316](https://github.com/dougUCN/SIS3316)
+To establish ethernet connection, a simple method is to assign a static IP to the digitizer's MAC-Address. 
+
+First, create shell script (we call it `connect_ethernet.sh` here) with contents
+
+```
+#!/bin/bash
+
+# Add static ARP entry for the SIS3316 digitizer
+arp -i enp3s0 -s [IP_ADDRESS_OF_SIS3316] 00:00:56:31:61:XX
+
+# Network TCP/UDP tuning to support high-bandwith applications
+sysctl -w net.core.rmem_max=8388608
+sysctl -w net.core.wmem_max=8388608
+sysctl -w net.core.rmem_default=65536
+sysctl -w net.core.wmem_default=65536
+sysctl -w net.ipv4.udp_mem='8388608 8388608 8388608'
+sysctl -w net.ipv4.tcp_rmem='4096 87380 8388608'
+sysctl -w net.ipv4.tcp_wmem='4096 65536 8388608'
+sysctl -w net.ipv4.tcp_mem='8388608 8388608 8388608'
+sysctl -w net.ipv4.route.flush=1
+
+# Enable jumbo frames
+ip link set enp3s0 mtu 9000
+
+# Show ARP Table
+arp -a
+```
+
+After creating the script, run `chmod +x connect_ethernet.sh` followed by `sudo ./connect_ethernet.sh` to establish connection. (IMPORTANT!) This static IP is temporary so after every reboot `sudo ./connect_ethernet.sh` should be ran once. 
+
+To test the connection, run `ping [IP_ADDRESS_OF_SIS3316]`, you should see the message `64 bytes from [IP_ADDRESS_OF_SIS3316]: icmp_seq...` repeatedly from the terminal.
 
 If you would like the change the default gui launch settings, edit defaults.in
 
