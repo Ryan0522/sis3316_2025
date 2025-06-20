@@ -81,11 +81,58 @@ A python virtual environment (venv) is recommended for all and required by some 
 
 ### Configuration Settings Guide (`config.json`) ###
 
-Edit sis3316 settings in config.json
+To modify runtime settings, edit `config.json`. It supports:
 
-For documentation on advanced configuration file arguments, view `configHelp.txt` (easiest to just dump it to terminal with `cat`)
+#### ✅ Global Flags
 
-It will also be useful to refer to the manual for explanation on certain settings (this is also hosted on the OSF page)
+| Flag               | Description |
+|--------------------|-------------|
+| `jumbo_ena`        | Enables jumbo Ethernet frames (MTU = 9000) |
+| `extern_ts_clr_ena`| Enables external timestamp clear |
+| `extern_trig_ena`  | Enables external triggers |
+| `nim_ui_as_veto`   | Treat NIM UI input as veto source |
+| `nim_ui_as_ts_clear` | Use NIM input to clear timestamp |
+| `nim_ti_as_te`     | NIM input as trigger enable |
+| `trig_as_veto`     | Converts any trigger into veto logic |
+| ...                | See `configHelp.txt` for complete list |
+
+#### ✅ Channel-Level Configuration
+
+| Key                   | Description |
+|------------------------|-------------|
+| `flags`               | e.g., `intern_trig`, `invert`, etc. |
+| `gain`                | `0` = ±5V, `1` = ±2V, `2` = ±1.9V |
+| `termination`         | Enable 50Ω input termination |
+| `event_maw_ena`       | Enable moving average buffer |
+| `event_format_mask`   | Controls saved data format (bitmask) |
+| `fir_energy_peaking_time` | Peaking time for FIR filter |
+| `fir_energy_gap_time`     | Gap time for FIR filter |
+| `event_pickup_index`  | Sets event pickup strategy |
+
+#### ✅ Group-Level Configuration
+
+| Key              | Description |
+|------------------|-------------|
+| `enable`         | Enables this digitizer group |
+| `gate_window`    | Trigger gate duration |
+| `maw_window`     | MAW buffer size |
+| `pileup_window`  | Pileup rejection window |
+| `delay`          | Pre-trigger delay |
+| `accumN_window`  | Accumulators for integration |
+
+#### ✅ Trigger Configuration
+
+| Key              | Description |
+|------------------|-------------|
+| `enable`         | Enables trigger logic |
+| `threshold`      | Trigger threshold (trapezoidal sum + 0x8000000) |
+| `maw_peaking_time` | MAW filter peaking time |
+| `maw_gap_time`     | MAW flat-top time |
+| `cfd_ena`        | Constant Fraction Discrimination (0: off, 3: on) |
+
+> 📝 For extended documentation, run `cat configHelp.txt` or refer to the SIS3316 manual.
+
+---
 
 ### sis3316 Daq code ###
 
