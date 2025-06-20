@@ -7,6 +7,9 @@ Start the GUI, sis3316 readout server, and the live plotter using
 ```
 ./START_GUI.sh
 ```
+
+---
+
 ### Setting up SIS3316 ###
 
 To establish ethernet connection, a simple method is to assign a static IP to the digitizer's MAC-Address. 
@@ -37,33 +40,47 @@ ip link set enp3s0 mtu 9000
 arp -a
 ```
 
-After creating the script, run `chmod +x connect_ethernet.sh` followed by `sudo ./connect_ethernet.sh` to establish connection. (IMPORTANT!) This static IP is temporary so after every reboot `sudo ./connect_ethernet.sh` should be ran once. 
+After creating the script, run `chmod +x connect_ethernet.sh` followed by `sudo ./connect_ethernet.sh` to establish connection. 
 
-To test the connection, run `ping [IP_ADDRESS_OF_SIS3316]`, you should see the message `64 bytes from [IP_ADDRESS_OF_SIS3316]: icmp_seq...` repeatedly from the terminal.
+> ⚠️ The static IP assignment is temporary and must be redone after reboot.
 
-If you would like the change the default gui launch settings, edit defaults.in
+To test the connection:
+
+```bash
+ping [IP_ADDRESS_OF_SIS3316]
+```
+
+If you would like to change the default GUI launch settings, edit `defaults.in`.
+
+---
 
 ### Python Environment and Dependencies ###
 
 Required libraries are located in dependencies.txt
 
-A python virtual environment (venv) is recommended for all and required by some computers. Please install the required libraries in the virtual environment. To do so, follow:
+A python virtual environment (venv) is recommended.
 
-1. Go to the desired directory through terminal
-2. Use the command ```python -m venv venv``` to create a venv folder (the second venv is the name of the folder, feel free to change it to something else).
-3. To activate the venv, enter the command ```source ./venv/bin/activate``` (Linux/macOS/Ubuntu) or ```venv\Scripts\activate.bat``` (Windows) in the terminal
-4. Install desired Python libraries (```pip install -r dependencies.txt``` to install libraries listed in the text file dependencies.txt in one go).
+```bash
+python -m venv venv
+source ./venv/bin/activate  # Linux/macOS
+# or
+venv\Scripts\activate.bat   # Windows
+
+pip install -r dependencies.txt
+```
+
+---
 
 ### How the Program Works (Startup -> Data Acquisition Flow) ###
 
-**Startup Sequence**
+#### **Startup Sequence** ####
 1. **Connection:** Set up a static IP for the SIS3316 digitizer (via `connect_ethernet.sh`)
 2. **Launching GUI:** Run `./START_GUI.sh` which:
       - Starts the `readoutServer.py` (DAQ data puller)
       - Launches the Qt GUI (`sis3316_gui.py`)
       - Initiates `livePlotter.py` for online visualization
 
-**Data Acquisition Flow**
+#### **Data Acquisition Flow** ####
 1. **Hardware Initialization:**
       - Loads setting from `config.json` (path specified in `defaults.in`)
       - Configurates digitizer channels, groups, and trigger parameters via the Python wrapper (in `sis3316/`)
@@ -79,11 +96,13 @@ A python virtual environment (venv) is recommended for all and required by some 
 5. **Post-Processing:**
       - Use `quickParse.py` or `Peak_Analysis.ipynb` to extract peaks, visualize events, and perform further analysis
 
+---
+
 ### Configuration Settings Guide (`config.json`) ###
 
 To modify runtime settings, edit `config.json`. It supports:
 
-#### ✅ Global Flags
+#### Global Flags
 
 | Flag               | Description |
 |--------------------|-------------|
@@ -96,7 +115,7 @@ To modify runtime settings, edit `config.json`. It supports:
 | `trig_as_veto`     | Converts any trigger into veto logic |
 | ...                | See `configHelp.txt` for complete list |
 
-#### ✅ Channel-Level Configuration
+#### Channel-Level Configuration
 
 | Key                   | Description |
 |------------------------|-------------|
@@ -109,7 +128,7 @@ To modify runtime settings, edit `config.json`. It supports:
 | `fir_energy_gap_time`     | Gap time for FIR filter |
 | `event_pickup_index`  | Sets event pickup strategy |
 
-#### ✅ Group-Level Configuration
+#### Group-Level Configuration
 
 | Key              | Description |
 |------------------|-------------|
@@ -120,7 +139,7 @@ To modify runtime settings, edit `config.json`. It supports:
 | `delay`          | Pre-trigger delay |
 | `accumN_window`  | Accumulators for integration |
 
-#### ✅ Trigger Configuration
+#### Trigger Configuration
 
 | Key              | Description |
 |------------------|-------------|
@@ -130,15 +149,17 @@ To modify runtime settings, edit `config.json`. It supports:
 | `maw_gap_time`     | MAW flat-top time |
 | `cfd_ena`        | Constant Fraction Discrimination (0: off, 3: on) |
 
-> 📝 For extended documentation, run `cat configHelp.txt` or refer to the SIS3316 manual.
+> For extended documentation, run `cat configHelp.txt` or refer to the SIS3316 manual.
 
 ---
 
 ### sis3316 Daq code ###
 
-The sis3316 python interface code in this gui folder may not be up to date. [Latest, stable version](https://github.com/dougUCN/SIS3316)
+The sis3316 python interface code in this gui folder may not be up to date. [latest stable repo](https://github.com/dougUCN/SIS3316)
 
-Note that the sis3316 can be run entirely with command line programs, located in the `tools` folder
+Command-line tools for scripting DAQ without GUI are located in the `tools/` folder.
+
+---
 
 ### File I/O ###
 
@@ -150,4 +171,4 @@ python quickParse.py -f ./Tests/runX/ch00.dat -adc -eventSpacing
 ```
 Advanced analysis is available via `Peak_Analysis.ipynb`
 
-
+---
