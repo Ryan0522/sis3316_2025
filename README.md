@@ -42,7 +42,7 @@ arp -a
 
 After creating the script, run `chmod +x connect_ethernet.sh` followed by `sudo ./connect_ethernet.sh` to establish connection. 
 
-> ⚠️ The static IP assignment is temporary and must be redone after reboot.
+> The static IP assignment is temporary and must be redone after reboot.
 
 To test the connection:
 
