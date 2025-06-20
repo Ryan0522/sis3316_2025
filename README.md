@@ -56,14 +56,28 @@ A python virtual environment (venv) is recommended for all and required by some 
 
 ### How the Program Works (Startup -> Data Acquisition Flow) ###
 
-1. **Initialization & Configuration Load**
-   - On launch, the program reads the `config.json` to fetch runtime flags and parameter values.
-3. **Hardware and Driver Setup**
-   - Initializes the SIS3316 digitizer: 
-5. **Data Stream Configuration**
-6. **Acquisition Start**
-7. **Data Processing Loop**
-8. **Shutdown**
+**Startup Sequence**
+1. **Connection:** Set up a static IP for the SIS3316 digitizer (via `connect_ethernet.sh`)
+2. **Launching GUI:** Run `./START_GUI.sh` which:
+      - Starts the `readoutServer.py` (DAQ data puller)
+      - Launches the Qt GUI (`sis3316_gui.py`)
+      - Initiates `livePlotter.py` for online visualization
+
+**Data Acquisition Flow**
+1. **Hardware Initialization:**
+      - Loads setting from `config.json` (path specified in `defaults.in`)
+      - Configurates digitizer channels, groups, and trigger parameters via the Python wrapper (in `sis3316/`)
+2. **Trigger and Buffer Setup:**
+      - Internal or external triggers can be selected per-channel via flags like `"intern_trig"` or `"extern_trig"`
+      - FIFO and MAW buffers are enabled based on `event_maw_ena`, `event_format_mask`, and timing windows
+3. **Streaming & Storage:**
+      - Once acquisition starts, binary waveform data is streamed via UDP and written to `.dat` files
+4. **Real-time Display:**
+      - `livePlotter.py` parses `.dat` files on the fly and generates:
+           - ADC histogram
+           - Time histogram
+5. **Post-Processing:**
+      - Use `quickParse.py` or `Peak_Analysis.ipynb` to extract peaks, visualize events, and perform further analysis
 
 ### Advanced Configuration Settings ###
 
