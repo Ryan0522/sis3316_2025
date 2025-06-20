@@ -56,6 +56,8 @@ If you would like to change the default GUI launch settings, edit `defaults.in`.
 
 ### Python Environment and Dependencies ###
 
+`tmux` is required. Install via `sudo apt install tmux`.
+
 Required libraries are located in dependencies.txt
 
 A python virtual environment (venv) is recommended.
