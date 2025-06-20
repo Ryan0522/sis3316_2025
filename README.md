@@ -79,7 +79,7 @@ A python virtual environment (venv) is recommended for all and required by some 
 5. **Post-Processing:**
       - Use `quickParse.py` or `Peak_Analysis.ipynb` to extract peaks, visualize events, and perform further analysis
 
-### Advanced Configuration Settings ###
+### Configuration Settings Guide (`config.json`) ###
 
 Edit sis3316 settings in config.json
 
@@ -95,6 +95,12 @@ Note that the sis3316 can be run entirely with command line programs, located in
 
 ### File I/O ###
 
-Use quickParse.py to make some quick plots from the binary files
+Use quickParse.py for simple waveform analysis
+
+Example:
+```
+python quickParse.py -f ./Tests/runX/ch00.dat -adc -eventSpacing
+```
+Advanced analysis is available via `Peak_Analysis.ipynb`
 
 
