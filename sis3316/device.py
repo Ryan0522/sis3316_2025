@@ -94,10 +94,14 @@ class Sis3316(object):
             grp.clear_link_error_latch_bits()
 
         for chan in self.channels:
-            chan.dac_offset  = 0x5000 # shifted origin to the left
-            # chan.dac_offset  = 0xCB20 # 52000 offset (for 2V negative input only), input range 0V to 2V
-            # chan.dac_offset  = 0x0000 # 0 offset (for 2V negative input only), input range -2V to 0V
+            chan.dac_offset  = 0xCB20 # 52000 offset, input range 0V to 2V
+            # chan.dac_offset  = 0x0000 # 0 offset, input range -2V to 0V
+            # chan.dac_offset = 0xFFFF 65535 offset, input range 0V to 5V (for gain set to 0 only!)
         
+        # Re-arm after configuration to ensure acquisition is ready (Jun 18, 2025)
+        self.disarm()
+        self.arm(bank=0)
+
         return self.status
 
     @abstractmethod

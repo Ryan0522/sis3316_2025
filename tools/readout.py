@@ -31,6 +31,11 @@ def readout_loop(dev, destinations, opts = {}, quiet = False, print_stats = Fals
     
     while True:
         try:
+
+            # Ensure ADC is armed beofre toggling memory bank (Jun 18, 2025)
+            if not dev._readout_status()['armed']:
+                dev.arm()
+
             dev.mem_toggle()
             recv_bytes = 0
             stats = []

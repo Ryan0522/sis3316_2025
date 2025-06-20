@@ -159,6 +159,7 @@ class Sis3316(object):
     def mem_bank(self):
         """ Current memory bank. Return None if not armed."""
         stat = self._readout_status()
+        # print("Armed:", stat['armed'], "Bank:", stat['bank'])
         if not stat['armed']:
             return None
         return stat['bank']

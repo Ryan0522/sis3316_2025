@@ -17,32 +17,47 @@
     },
     "1": {
       "flags": [
-        "intern_trig",
-        "invert"
+        "intern_trig"
       ],
-      "gain": 0,
+      "gain": 1,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
-      "event_format_mask": 1,
+      "event_maw_select": 1,
+      "event_format_mask": 9,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 21,
+      "fir_energy_tau_table": 1,
       "termination": true
     },
     "2": {
       "flags": [
-        "intern_trig",
-        "invert"
+        "intern_trig"
       ],
-      "gain": 0,
+      "gain": 1,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
-      "event_format_mask": 1,
+      "event_maw_select": 1,
+      "event_format_mask": 9,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 21,
+      "fir_energy_tau_table": 1,
       "termination": true
     },
     "3": {
       "flags": [
-        "intern_trig",
-        "invert"
+        "intern_trig"
       ],
-      "gain": 0,
+      "gain": 1,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
-      "event_format_mask": 1,
+      "event_maw_select": 1,
+      "event_format_mask": 9,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 21,
+      "fir_energy_tau_table": 1,
       "termination": true
     },
     "4": {
@@ -182,7 +197,7 @@
       "maw_delay": 50,
       "pileup_window": 500,
       "raw_window": 0,
-      "maw_window": 1500,
+      "maw_window": 1000,
       "repileup_window": 500,
       "accum1_start": 0,
       "accum1_window": 1,
@@ -304,30 +319,30 @@
     "0": {
       "cfd_ena": 1,
       "enable": 1,
-      "maw_gap_time": 100,
-      "maw_peaking_time": 50,
-      "threshold": 134222728
+      "maw_gap_time": 300,
+      "maw_peaking_time": 100,
+      "threshold": 134227728 
     },
     "1": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218128
+      "enable": 1,
+      "maw_gap_time": 100,
+      "maw_peaking_time": 100,
+      "threshold": 134218728
     },
     "2": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134219728
+      "enable": 1,
+      "maw_gap_time": 100,
+      "maw_peaking_time": 100,
+      "threshold": 134218728
     },
     "3": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218228
+      "enable": 1,
+      "maw_gap_time": 100,
+      "maw_peaking_time": 100,
+      "threshold": 134218728
     },
     "4": {
       "cfd_ena": 1,
