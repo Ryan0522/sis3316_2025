@@ -4,7 +4,7 @@ Adapted from [link to repo](https://github.com/dougUCN/sis3316_gui).
 
 Start the GUI, sis3316 readout server, and the live plotter using 
 
-```
+```bash
 ./START_GUI.sh
 ```
 
@@ -16,7 +16,7 @@ To establish ethernet connection, a simple method is to assign a static IP to th
 
 First, create shell script (we call it `connect_ethernet.sh` here) with contents
 
-```
+```bash
 #!/bin/bash
 
 # Add static ARP entry for the SIS3316 digitizer
@@ -166,7 +166,7 @@ Command-line tools for scripting DAQ without GUI are located in the `tools/` fol
 Use quickParse.py for simple waveform analysis
 
 Example:
-```
+```bash
 python quickParse.py -f ./Tests/runX/ch00.dat -adc -eventSpacing
 ```
 Advanced analysis is available via `Peak_Analysis.ipynb`
