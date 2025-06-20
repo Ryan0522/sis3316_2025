@@ -54,6 +54,17 @@ A python virtual environment (venv) is recommended for all and required by some 
 3. To activate the venv, enter the command ```source ./venv/bin/activate``` (Linux/macOS/Ubuntu) or ```venv\Scripts\activate.bat``` (Windows) in the terminal
 4. Install desired Python libraries (```pip install -r dependencies.txt``` to install libraries listed in the text file dependencies.txt in one go).
 
+### How the Program Works (Startup -> Data Acquisition Flow) ###
+
+1. **Initialization & Configuration Load**
+   - On launch, the program reads the `config.json` to fetch runtime flags and parameter values.
+3. **Hardware and Driver Setup**
+   - Initializes the SIS3316 digitizer: 
+5. **Data Stream Configuration**
+6. **Acquisition Start**
+7. **Data Processing Loop**
+8. **Shutdown**
+
 ### Advanced Configuration Settings ###
 
 Edit sis3316 settings in config.json
