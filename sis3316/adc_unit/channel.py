@@ -188,6 +188,19 @@ class Adc_channel(object):
         self.board._set_field(reg, data, offset, 0xFF)
 
     @property
+    def maw_delay_index(self):
+        reg = SIS3316_ADC_GRP(ENERGY_PICKUP_INDEX_REG, self.gid) + 4 * (self.cid % 4) # Group 1 Ch1: 0x10E0 ,Group 2 Ch6: 0x20E4
+        offset=0
+        return self.board._get_field(reg, offset, 0xFFFF)
+    
+    @maw_delay_index.setter
+    def maw_delay_index(self, value):
+        if not (0 <= value <= 0xFFFF):
+            raise ValueError("Pickup index should be in range0..65535.")
+        reg = SIS3316_ADC_GRP(ENERGY_PICKUP_INDEX_REG, self.gid) + 4 * (self.cid % 4) # Group 1 Ch1: 0x10E0 ,Group 2 Ch6: 0x20E4
+        self.board._set_field(reg, value, 0, 0xFFFF)
+
+    @property
     def event_pickup_index(self):
         reg = SIS3316_ADC_GRP(ENERGY_PICKUP_INDEX_REG, self.gid) + 4 * (self.cid % 4) # Group 1 Ch1: 0x10E0 ,Group 2 Ch6: 0x20E4
         offset=16 #start from 16th bit
