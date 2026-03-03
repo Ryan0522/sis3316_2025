@@ -82,7 +82,7 @@ class Sis3316(device.Sis3316, i2c.Sis3316, fifo.Sis3316, readout.Sis3316, clkMul
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.bind( ('', port ) )
         sock.setblocking(0) #guarantee that recv will not block internally
-        #sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) #avoid the TIME_WAIT issue #FIXME: it still relevant?
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, 33554432) #avoid the TIME_WAIT issue #FIXME: it still relevant?
         self._sock = sock
         
         for parent in self.__class__.__bases__: # all parent classes
