@@ -2,200 +2,288 @@
   "channels": {
     "0": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 1,
+      "gain": 0,
       "event_pickup_index": 0,
-      "maw_delay_index": 0,
-      "event_maw_ena": true,
+      "event_maw_ena": false,
       "event_maw_select": 1,
-      "event_format_mask": 9,
-      "fir_energy_peaking_time": 100,
-      "fir_energy_gap_time": 300,
-      "fir_energy_tau_factor": 21,
-      "fir_energy_tau_table": 1,
+      "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "1": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 1,
+      "gain": 0,
       "event_pickup_index": 0,
-      "maw_delay_index": 0,
       "event_maw_ena": false,
       "event_maw_select": 1,
-      "event_format_mask": 9,
+      "event_format_mask": 1,
       "fir_energy_peaking_time": 50,
       "fir_energy_gap_time": 100,
-      "fir_energy_tau_factor": 21,
-      "fir_energy_tau_table": 1,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "2": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 1,
+      "gain": 0,
       "event_pickup_index": 0,
-      "maw_delay_index": 0,
       "event_maw_ena": false,
       "event_maw_select": 1,
-      "event_format_mask": 9,
+      "event_format_mask": 1,
       "fir_energy_peaking_time": 50,
       "fir_energy_gap_time": 100,
-      "fir_energy_tau_factor": 21,
-      "fir_energy_tau_table": 1,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "3": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 1,
+      "gain": 0,
       "event_pickup_index": 0,
-      "maw_delay_index": 0,
       "event_maw_ena": false,
       "event_maw_select": 1,
-      "event_format_mask": 9,
+      "event_format_mask": 1,
       "fir_energy_peaking_time": 50,
       "fir_energy_gap_time": 100,
-      "fir_energy_tau_factor": 21,
-      "fir_energy_tau_table": 1,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "4": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 1,
+      "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "5": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 1,
+      "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "6": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "7": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "8": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "9": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "10": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "11": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "12": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "13": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "14": {
       "flags": [
         "intern_trig",
-        "invert"
+        "invert",
+        "extern_veto"
       ],
       "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
+      "event_maw_select": 1,
       "event_format_mask": 1,
+      "fir_energy_peaking_time": 50,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     },
     "15": {
       "flags": [
-        "intern_trig"
+        "intern_trig",
+        "invert",
+        "extern_veto"
       ],
-      "gain": 2,
+      "gain": 0,
+      "event_pickup_index": 0,
       "event_maw_ena": false,
       "event_maw_select": 1,
-      "event_format_mask": 9,
+      "event_format_mask": 1,
       "fir_energy_peaking_time": 50,
-      "fir_energy_gap_time": 50,
-      "fir_energy_tau_factor": 1,
-      "fir_energy_tau_table": 1,
+      "fir_energy_gap_time": 100,
+      "fir_energy_tau_factor": 63,
+      "fir_energy_tau_table": 3,
       "termination": true
     }
   },
   "freq": 250,
   "flags": [
     "extern_ts_clr_ena",
-    "jumbo_ena"
+    "jumbo_ena",
+    "nim_ui_as_veto",
+    "local_veto_ena"
   ],
   "groups": {
     "0": {
       "addr_threshold": 20116,
-      "delay": 46,
+      "delay": 200,
       "enable": true,
       "gate_window": 1500,
       "maw_delay": 50,
@@ -222,14 +310,14 @@
     },
     "1": {
       "addr_threshold": 20116,
-      "delay": 46,
+      "delay": 200,
       "enable": true,
-      "gate_window": 1000,
+      "gate_window": 1500,
       "maw_delay": 50,
-      "pileup_window": 0,
+      "pileup_window": 500,
       "raw_window": 0,
       "maw_window": 1000,
-      "repileup_window": 0,
+      "repileup_window": 500,
       "accum1_start": 0,
       "accum1_window": 1,
       "accum2_start": 0,
@@ -249,13 +337,14 @@
     },
     "2": {
       "addr_threshold": 20116,
-      "delay": 46,
+      "delay": 200,
       "enable": true,
-      "gate_window": 1000,
+      "gate_window": 1500,
       "maw_delay": 50,
-      "pileup_window": 100,
+      "pileup_window": 500,
       "raw_window": 0,
-      "repileup_window": 0,
+      "maw_window": 1000,
+      "repileup_window": 500,
       "accum1_start": 0,
       "accum1_window": 1,
       "accum2_start": 0,
@@ -275,9 +364,9 @@
     },
     "3": {
       "addr_threshold": 20116,
-      "delay": 46,
+      "delay": 200,
       "enable": true,
-      "gate_window": 1200,
+      "gate_window": 1500,
       "maw_delay": 50,
       "pileup_window": 500,
       "raw_window": 0,
@@ -323,114 +412,114 @@
     "0": {
       "cfd_ena": 1,
       "enable": 1,
-      "maw_gap_time": 300,
+      "maw_gap_time": 50,
       "maw_peaking_time": 100,
-      "threshold": 134227728 
+      "threshold": 134220728
     },
     "1": {
       "cfd_ena": 1,
       "enable": 1,
-      "maw_gap_time": 100,
+      "maw_gap_time": 50,
       "maw_peaking_time": 100,
-      "threshold": 134218728
+      "threshold": 134220728
     },
     "2": {
       "cfd_ena": 1,
       "enable": 1,
-      "maw_gap_time": 100,
+      "maw_gap_time": 50,
       "maw_peaking_time": 100,
-      "threshold": 134218728
+      "threshold": 134220728
     },
     "3": {
       "cfd_ena": 1,
       "enable": 1,
-      "maw_gap_time": 100,
+      "maw_gap_time": 50,
       "maw_peaking_time": 100,
-      "threshold": 134218728
+      "threshold": 134220728
     },
     "4": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218378
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "5": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218528
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "6": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "7": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "8": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "9": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "10": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "11": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "12": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "13": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "14": {
       "cfd_ena": 1,
-      "enable": 0,
-      "maw_gap_time": 6,
-      "maw_peaking_time": 6,
-      "threshold": 134218728
+      "enable": 1,
+      "maw_gap_time": 50,
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     },
     "15": {
       "cfd_ena": 1,
-      "enable": 0,
+      "enable": 1,
       "maw_gap_time": 50,
-      "maw_peaking_time": 50,
-      "threshold": 134218228
+      "maw_peaking_time": 100,
+      "threshold": 134220728
     }
   }
 }
