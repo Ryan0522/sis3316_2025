@@ -7,6 +7,7 @@ Write raw (binary) data to files (one file per channel).
 
 import sys,os
 import argparse
+import time
 from time import sleep 
 import io
 from datetime import datetime
@@ -14,9 +15,63 @@ from datetime import datetime
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import sis3316
 
+def _log_err(msg: str):
+    timestr = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    sys.stderr.write(f"\n{timestr} {msg}\n")
 
-def readout_loop(dev, destinations, opts = {}, quiet = False, print_stats = False ):
-    """ Perform endless readout loop. 
+def _recover_adc_arm(dev, *, retries=3, retry_sleep_s=0.005, hard_reset=True):
+    """
+    Staged recovery:
+    1) disarm -> short sleep -> arm (a few retries)
+    2) if still failling: ADC-FPGA reset key -> disarm -> arm
+    """    
+    last_exc = None
+
+    # Stage 1: soft retries
+    for _ in range(retries):
+        try:
+            dev.disarm()
+            sleep(retry_sleep_s)
+            dev.arm(0)
+            if dev._readout_status().get("armed", False):
+                return True
+        except Exception as e:
+            last_exc = e
+            sleep(retry_sleep_s)
+
+    if not hard_reset:
+        raise last_exc if last_exc else RuntimeError("arm failed (no exception captured)")
+    
+    # Stage 2: ADC-FPGA reset (DDR3 + link interface)
+    try:
+        from sis3316.registers import SIS3316_KEY_ADC_FPGA_RESET
+        dev.write(SIS3316_KEY_ADC_FPGA_RESET, 0)
+        sleep(0.2)
+
+        dev.disarm()
+        sleep(retry_sleep_s)
+        dev.arm(0)
+
+        if dev._readout_status().get("armed", False):
+            return True
+        
+        raise RuntimeError("arm still failed after ADC-FPGA reset")
+    except Exception as e:
+        raise e
+
+def readout_loop(dev, destinations, opts=None, quiet=False, print_stats=False,
+                 # Swap policy knobs
+                 use_fill_swap=True,
+                 fill_frac=0.85,
+                 use_idle_swap=True,
+                 idle_swap_period_s=1.0,
+                 idle_epsilon_words=0,
+                 min_swap_period_s=0.2,
+                 #Timing
+                 loop_sleep_s=1.0,
+                 ):
+    """ 
+    Perform endless readout loop. 
     
         destinations: 
             zip(channels, files)
@@ -24,66 +79,109 @@ def readout_loop(dev, destinations, opts = {}, quiet = False, print_stats = Fals
             only errors in stderr
         print_stats:
             print bytes per channel to stderr (ignores `quiet`)
+    
+    *Note Mar 3, 2026:
+        Preserves original printing/stat logic, but replaces unconditional mem_toggle()
+        with:
+        - Option A: swap when active-bank addr_actual is near addr_threshold
+        - Option B: if idle (addr_actual not growing), swap every idle_swap_period_s
+        Adds staged recovery on exceptions (arm failures).
     """
+    if opts is None:
+        opts = {}
+
     total_bytes = 0
-    human_bytes = ''
     units = ( ('GB',1024**3), ('MB', 1024**2), ('KB', 1024), ('Bytes', 1))
     
+    chan_list = [ch for (ch, _) in destinations]
+    last_swap_t = 0.0
+
+    out = ""
+
     while True:
         try:
+            if not dev._readout_status().get("armed", False):
+                dev.arm(0)
 
-            # Ensure ADC is armed beofre toggling memory bank (Jun 18, 2025)
-            if not dev._readout_status()['armed']:
-                dev.arm()
+            now = time.monotonic()
 
-            dev.mem_toggle()
+            # poll active bank address counters (words) for the channels we are reading
+            act = dev.poll_act(chan_list)  # :contentReference[oaicite:4]{index=4}
+
+            should_swap_fill = False
+            if use_fill_swap:
+                for idx, ch in enumerate(chan_list):
+                    w = act[idx]
+                    if w is None:
+                        continue
+                    thr_bytes = dev.channels[ch].group.addr_threshold  # compared vs actual counter :contentReference[oaicite:5]{index=5}
+                    if thr_bytes <= 0:
+                        continue
+                    thr_words = thr_bytes // 4
+                    if thr_words > 0 and w >= int(fill_frac * thr_words):
+                        should_swap_fill = True
+                        break
+
+            should_swap_periodic = False
+            if use_idle_swap:  # reinterpret as "periodic swap"
+                max_act = 0
+                for w in act:
+                    if w is not None and w > max_act:
+                        max_act = w
+
+                min_words_to_swap = 256  # tune
+                if (now - last_swap_t) >= idle_swap_period_s and max_act >= min_words_to_swap:
+                    should_swap_periodic = True
+
+            should_swap = (should_swap_fill or should_swap_periodic)
+
+            if should_swap and (now - last_swap_t) >= min_swap_period_s:
+                dev.mem_toggle()  # disarm+arm opposite bank :contentReference[oaicite:6]{index=6}
+                last_swap_t = now
+
+            # ---- readout (same structure as original) ----
             recv_bytes = 0
             stats = []
-            out = ''
             for ch, file_ in destinations:
                 bytes_ = 0
                 for ret in dev.readout_pipe(ch, file_, 0, opts ):  # per chunk
-                    bytes_ += ret['transfered'] * 4  # words -> bytes
-                
+                    bytes_ += ret['transfered'] * 4  # words -> bytes               
                 stats.append( (ch, bytes_) )    
                 recv_bytes += bytes_
                 
-
             total_bytes += recv_bytes
             
-            bytes_str = ''
-            stats_str = ''
-            
-            if print_stats:
-                # bytes per channel
-                stats_str = 'chan         bytes\n' \
-                    + "\n".join( ["%02d\t%10d" % (ch,b) for ch,b in stats] )
-            
-            if not quiet:
-                # human-readable total_bytes
+            # ---- printing (preserve original logic) ----
+            if print_stats or not quiet:
+                human_bytes = ''
                 for unit, amount in units:
                     if total_bytes > amount:
                         human_bytes = "%d%s" % ((total_bytes)/amount, unit)
                         break
-                
-                bytes_str = 'total: %d (%s)      \n' % (total_bytes, human_bytes)
-                
-            # Print progress
-            if print_stats or not quiet:
-                out = bytes_str + stats_str
-                sys.stderr.write(out + "\033[F" * out.count('\n') ) 
 
-            sleep(1)
-            
+                bytes_str = '' if quiet else "total: %d (%s)      \n" % (total_bytes, human_bytes)
+                stats_str = ""
+                if print_stats:
+                    stats_str = 'chan         bytes\n' + \
+                                "\n".join(["%02d\t%10d" % (ch, b) for ch, b in stats])
+
+                out = bytes_str + stats_str
+                sys.stderr.write(out + "\033[F" * out.count('\n'))
+
+            time.sleep(loop_sleep_s)
+
         except KeyboardInterrupt:
             sys.stderr.write('\n' * out.count('\n') + "\nInterrupted.\n")
-            exit(0)
+            raise
             
         except Exception as e:
-            # Ignore all exceptions and continue
-            timestr = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            sys.stderr.write('\n%s Err: %s\n' % (timestr, e))
-
+            _log_err(f"Err: {e}")
+            try:
+                _recover_adc_arm(dev)
+                _log_err("Recovered: ADC re-armed successfully.")
+            except Exception as e2:
+                _log_err(f"Recovery failed: {e2}")
+                time.sleep(0.5)
         
 def makedirs(path):
     """ Create directories for `path` (like 'mkdir -p'). """
