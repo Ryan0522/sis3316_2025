@@ -26,6 +26,8 @@ def _recover_adc_arm(dev, *, retries=3, retry_sleep_s=0.005, hard_reset=True):
     2) if still failling: ADC-FPGA reset key -> disarm -> arm
     """    
     last_exc = None
+    dev.cleanup_socket()
+    _log_err("Socket cleaned. Attempting recovery...")
 
     # Stage 1: soft retries
     for _ in range(retries):
@@ -59,17 +61,7 @@ def _recover_adc_arm(dev, *, retries=3, retry_sleep_s=0.005, hard_reset=True):
     except Exception as e:
         raise e
 
-def readout_loop(dev, destinations, opts=None, quiet=False, print_stats=False,
-                 # Swap policy knobs
-                 use_fill_swap=True,
-                 fill_frac=0.85,
-                 use_idle_swap=True,
-                 idle_swap_period_s=1.0,
-                 idle_epsilon_words=0,
-                 min_swap_period_s=0.2,
-                 #Timing
-                 loop_sleep_s=1.0,
-                 ):
+def readout_loop(dev, destinations, opts={}, quiet=False, print_stats=False):
     """ 
     Perform endless readout loop. 
     
@@ -81,107 +73,72 @@ def readout_loop(dev, destinations, opts=None, quiet=False, print_stats=False,
             print bytes per channel to stderr (ignores `quiet`)
     
     *Note Mar 3, 2026:
-        Preserves original printing/stat logic, but replaces unconditional mem_toggle()
-        with:
-        - Option A: swap when active-bank addr_actual is near addr_threshold
-        - Option B: if idle (addr_actual not growing), swap every idle_swap_period_s
-        Adds staged recovery on exceptions (arm failures).
+        Changed bank swap frequency to 0.05s 
     """
-    if opts is None:
-        opts = {}
-
     total_bytes = 0
+    human_bytes = ''
     units = ( ('GB',1024**3), ('MB', 1024**2), ('KB', 1024), ('Bytes', 1))
-    
-    chan_list = [ch for (ch, _) in destinations]
-    last_swap_t = 0.0
-
-    out = ""
+    out = ''
 
     while True:
         try:
-            if not dev._readout_status().get("armed", False):
-                dev.arm(0)
+            # 1. Hardware Swap
+            dev.mem_toggle()
 
-            now = time.monotonic()
-
-            # poll active bank address counters (words) for the channels we are reading
-            act = dev.poll_act(chan_list)  # :contentReference[oaicite:4]{index=4}
-
-            should_swap_fill = False
-            if use_fill_swap:
-                for idx, ch in enumerate(chan_list):
-                    w = act[idx]
-                    if w is None:
-                        continue
-                    thr_bytes = dev.channels[ch].group.addr_threshold  # compared vs actual counter :contentReference[oaicite:5]{index=5}
-                    if thr_bytes <= 0:
-                        continue
-                    thr_words = thr_bytes // 4
-                    if thr_words > 0 and w >= int(fill_frac * thr_words):
-                        should_swap_fill = True
-                        break
-
-            should_swap_periodic = False
-            if use_idle_swap:  # reinterpret as "periodic swap"
-                max_act = 0
-                for w in act:
-                    if w is not None and w > max_act:
-                        max_act = w
-
-                min_words_to_swap = 256  # tune
-                if (now - last_swap_t) >= idle_swap_period_s and max_act >= min_words_to_swap:
-                    should_swap_periodic = True
-
-            should_swap = (should_swap_fill or should_swap_periodic)
-
-            if should_swap and (now - last_swap_t) >= min_swap_period_s:
-                dev.mem_toggle()  # disarm+arm opposite bank :contentReference[oaicite:6]{index=6}
-                last_swap_t = now
-
-            # ---- readout (same structure as original) ----
             recv_bytes = 0
             stats = []
+
+            # 2. Data Readout
             for ch, file_ in destinations:
                 bytes_ = 0
-                for ret in dev.readout_pipe(ch, file_, 0, opts ):  # per chunk
-                    bytes_ += ret['transfered'] * 4  # words -> bytes               
-                stats.append( (ch, bytes_) )    
-                recv_bytes += bytes_
+                # Transfer from inactive bank
+                for ret in dev.readout_pipe(ch, file_, 0, opts):
+                    bytes_ += ret['transfered'] * 4
                 
+                stats.append((ch, bytes_))
+                recv_bytes += bytes_
+
             total_bytes += recv_bytes
+
+            # 3. Stats Generation 
+            bytes_str = ''
+            stats_str = ''
+
+            if print_stats:
+                # bytes per channel
+                stats_str = 'chan         bytes\n' \
+                    + "\n".join( ["%02d\t%10d" % (ch,b) for ch,b in stats] )
             
-            # ---- printing (preserve original logic) ----
-            if print_stats or not quiet:
-                human_bytes = ''
+            if not quiet:
+                # human-readable total_bytes
                 for unit, amount in units:
                     if total_bytes > amount:
                         human_bytes = "%d%s" % ((total_bytes)/amount, unit)
                         break
-
-                bytes_str = '' if quiet else "total: %d (%s)      \n" % (total_bytes, human_bytes)
-                stats_str = ""
-                if print_stats:
-                    stats_str = 'chan         bytes\n' + \
-                                "\n".join(["%02d\t%10d" % (ch, b) for ch, b in stats])
-
+                bytes_str = 'total: %d (%s)      \n' % (total_bytes, human_bytes)
+                
+            # 4. Progress Printing (Standard ANSI control for terminal)
+            if print_stats or not quiet:
                 out = bytes_str + stats_str
-                sys.stderr.write(out + "\033[F" * out.count('\n'))
+                # The \033[F moves the cursor up so the stats refresh in-place
+                sys.stderr.write(out + "\033[F" * out.count('\n') ) 
 
-            time.sleep(loop_sleep_s)
+            # Heartbeat: 0.05s allows up to 20 bank-swaps per second
+            sleep(0.05)
 
         except KeyboardInterrupt:
+            # Clean exit for terminal
             sys.stderr.write('\n' * out.count('\n') + "\nInterrupted.\n")
-            raise
+            return
             
         except Exception as e:
-            _log_err(f"Err: {e}")
+            # Automatic Recovery Trigger
+            _log_err(f"Readout Error: {e}")
             try:
                 _recover_adc_arm(dev)
-                _log_err("Recovered: ADC re-armed successfully.")
-            except Exception as e2:
-                _log_err(f"Recovery failed: {e2}")
-                time.sleep(0.5)
+            except Exception as recovery_error:
+                _log_err(f"Critical Recovery Failure: {recovery_error}")
+                sleep(0.5)
         
 def makedirs(path):
     """ Create directories for `path` (like 'mkdir -p'). """

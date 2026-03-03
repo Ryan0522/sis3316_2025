@@ -58,7 +58,7 @@ def retry_on_timeout(f):
                 return f(self, *args, **kwargs)
             except self._TimeoutExcept:
                 to = self.retry_max_timeout
-                usleep(randrange(to/2,to))
+                usleep(randrange(to//2,to))
                 
         raise self._TimeoutExcept(self.retry_max_count)
     return wrapper
