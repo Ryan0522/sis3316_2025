@@ -26,6 +26,7 @@ def readout_process( dev, channels, outfiles ):
 
     # Open files
     files_ = [io.FileIO( name, 'w') for name in outfiles] 
+    # files_ = [io.BytesIO() for _ in outfiles] # Data is written to RAM and discarded when the process ends
 
     # Perform readout
     chunksize = 1024*1024  # how many bytes to request at once

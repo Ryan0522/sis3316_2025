@@ -276,7 +276,6 @@
   "freq": 250,
   "flags": [
     "extern_ts_clr_ena",
-    "jumbo_ena",
     "nim_ui_as_veto",
     "local_veto_ena"
   ],

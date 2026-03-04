@@ -124,7 +124,7 @@ def readout_loop(dev, destinations, opts={}, quiet=False, print_stats=False):
                 sys.stderr.write(out + "\033[F" * out.count('\n') ) 
 
             # Heartbeat: 0.05s allows up to 20 bank-swaps per second
-            sleep(0.05)
+            sleep(0.2)
 
         except KeyboardInterrupt:
             # Clean exit for terminal
